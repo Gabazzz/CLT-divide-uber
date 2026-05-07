@@ -4,7 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card } from '../components/ui/Card';
-import { Car } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 export const LoginPage: React.FC = () => {
   const { login, currentUser } = useAppStore();
@@ -43,10 +43,7 @@ export const LoginPage: React.FC = () => {
 
       <Card className="w-full max-w-md p-8 shadow-2xl relative z-10 border-border-subtle/50 bg-bg-card/80 backdrop-blur-xl">
         <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-4 shadow-[var(--shadow-glow)]">
-            <Car size={32} className="text-white" />
-          </div>
-          <h1 className="text-2xl font-bold text-white">Uber Share</h1>
+          <img src={logo} alt="Uber Share Logo" className="w-48 mb-2 drop-shadow-[0_0_15px_rgba(124,58,237,0.5)]" />
           <p className="text-text-muted text-sm mt-1">Faça login para continuar</p>
         </div>
 

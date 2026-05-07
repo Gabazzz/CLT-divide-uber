@@ -118,6 +118,7 @@ export const UsersPage: React.FC = () => {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         userToEdit={editingUser}
+        currentUserId={currentUser?.id}
         onSave={handleSave}
         onDelete={handleDelete}
       />

@@ -11,6 +11,7 @@ interface UserFormModalProps {
   isOpen: boolean;
   onClose: () => void;
   userToEdit?: User;
+  currentUserId?: string;
   onSave: (user: User) => void;
   onDelete?: (id: string) => void;
 }
@@ -27,10 +28,12 @@ export const UserFormModal: React.FC<UserFormModalProps> = ({
   isOpen,
   onClose,
   userToEdit,
+  currentUserId,
   onSave,
   onDelete,
 }) => {
   const isEditing = !!userToEdit;
+  const isSelf = isEditing && userToEdit?.id === currentUserId;
 
   const {
     control,
@@ -132,23 +135,32 @@ export const UserFormModal: React.FC<UserFormModalProps> = ({
             name="role"
             control={control}
             render={({ field: { value, onChange } }) => (
-              <div className="flex bg-border-subtle rounded-lg p-1 h-11">
+              <div className="flex bg-border-subtle rounded-lg p-1 h-11 relative">
+                {isSelf && (
+                  <div className="absolute inset-0 bg-bg-card/50 z-10 flex items-center justify-center rounded-lg backdrop-blur-[1px]">
+                    <span className="text-[10px] text-text-muted uppercase font-bold tracking-tighter">Você não pode alterar seu próprio nível</span>
+                  </div>
+                )}
                 <button
                   type="button"
+                  disabled={isSelf}
                   onClick={() => onChange('user')}
                   className={cn(
                     'flex-1 rounded-md text-sm font-medium transition-all',
-                    value === 'user' ? 'bg-bg-card shadow text-white' : 'text-text-muted hover:text-white'
+                    value === 'user' ? 'bg-bg-card shadow text-white' : 'text-text-muted hover:text-white',
+                    isSelf && 'opacity-50 cursor-not-allowed'
                   )}
                 >
                   Usuário Comum
                 </button>
                 <button
                   type="button"
+                  disabled={isSelf}
                   onClick={() => onChange('admin')}
                   className={cn(
                     'flex-1 rounded-md text-sm font-medium transition-all',
-                    value === 'admin' ? 'bg-bg-card shadow text-white' : 'text-text-muted hover:text-white'
+                    value === 'admin' ? 'bg-bg-card shadow text-white' : 'text-text-muted hover:text-white',
+                    isSelf && 'opacity-50 cursor-not-allowed'
                   )}
                 >
                   Administrador

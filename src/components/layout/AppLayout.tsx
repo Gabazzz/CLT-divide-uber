@@ -4,6 +4,7 @@ import { Car, Wallet, Handshake, Users, UserCircle, CalendarDays } from 'lucide-
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '../../utils/cn';
 import { useAppStore } from '../../store/useAppStore';
+import logo from '../../assets/logo.png';
 
 const navItems = [
   { path: '/', label: 'Corridas', icon: Car },
@@ -49,9 +50,7 @@ export const Sidebar: React.FC = () => {
   return (
     <aside className="hidden w-64 flex-col border-r border-border-subtle bg-bg-card md:flex">
       <div className="p-6">
-        <h1 className="text-xl font-bold text-white tracking-wide drop-shadow-[0_0_10px_rgba(124,58,237,0.5)]">
-          UBER<span className="text-primary">SHARE</span>
-        </h1>
+        <img src={logo} alt="Uber Share Logo" className="w-full drop-shadow-[0_0_10px_rgba(124,58,237,0.3)]" />
       </div>
 
       <div className="px-4 mb-6">
@@ -97,9 +96,7 @@ export const TopBarMobile: React.FC = () => {
   const { selectedMonth, setSelectedMonth } = useAppStore();
   return (
     <div className="md:hidden bg-bg-card border-b border-border-subtle p-3 flex items-center justify-between sticky top-0 z-30">
-      <h1 className="text-lg font-bold text-white drop-shadow-[0_0_10px_rgba(124,58,237,0.5)]">
-        UBER<span className="text-primary">SHARE</span>
-      </h1>
+      <img src={logo} alt="Uber Share Logo" className="h-8 drop-shadow-[0_0_10px_rgba(124,58,237,0.3)]" />
       <input 
         type="month" 
         value={selectedMonth || ''}
